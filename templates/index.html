@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <script src="{{ url_for('static', filename='js/index.js') }}" defer></script>
+    <title>Plant & Crop</title>
+</head>
+<body>
+    <nav>
+        <ul class="navbar">
+            <li><a href="#home" class="active">HOME</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+        </ul>
+        <div id="nav-search">
+            <form action="#">
+                <input type="text" placeholder="Search Plant Diseases" name="search">
+            </form>
+        </div>
+        <div class="nav-login">
+            <a href="signup.html">SIGNUP / SIGNIN</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="img-area" id="imagePreview" data-img="">
+            <i class='bx bxs-cloud-upload icon'></i>
+            <h3>Upload Plant Image</h3>
+            <p>Image size must be less than <span>5MB</span></p>
+            <img src="" alt="" id="preview-image" class="show-img">
+        </div>
+
+        <form id="upload-form" enctype="multipart/form-data">
+            <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg" class="img-upload">
+            <button type="button" class="select-image" onclick="document.getElementById('imageUpload').click()">Select Image</button>
+            <button type="button" class="solution" id="btn-predict">Analyze Disease</button>
+        </form>
+
+        <div id="loader" class="loading">Analyzing...</div>
+        <div id="result" class="result-container">
+            <h3 class="rst">Result: 
+                <span id="prediction-result"></span>
+            </h3>
+        </div>
+    </div>
+
+</body>
+</html>
