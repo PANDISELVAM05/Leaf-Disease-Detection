@@ -22,6 +22,13 @@ else:
 # Class labels
 labels = {0: 'Healthy', 1: 'Powdery Mildew', 2: 'Rust'}
 
+# Organic solution recommendations
+organic_solutions = {
+    'Healthy': 'No action needed. Maintain proper care.',
+    'Powdery Mildew': 'Use neem oil or a baking soda solution (1 tbsp baking soda + 1 gallon water).',
+    'Rust': 'Apply sulfur-based organic fungicides and remove affected leaves.'
+}
+
 # Function to process and predict the image
 def get_result(image_path):
     try:
@@ -32,7 +39,9 @@ def get_result(image_path):
 
         predictions = model.predict(x)[0]  # Get predictions
         predicted_label = labels[np.argmax(predictions)]  # Get the highest probability label
-        return predicted_label
+        solution = organic_solutions.get(predicted_label, 'No solution available.')
+
+        return f"{predicted_label} - Recommended Solution: {solution}"
     except Exception as e:
         return f"Error processing image: {str(e)}"
 
@@ -64,4 +73,4 @@ def analyze_disease():
     return jsonify({'prediction': predicted_label})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True) 
